@@ -11,21 +11,30 @@ export const contactsSlice = createSlice({
   name: 'contacts',
   initialState: contactsInitialState,
   reducers: {
-    // addContact: {
-    //   reducer(state, action) {
-    //     return state.filter(contact => contact.name === action.payload).length
-    //       ? alert(`${action.payload.name} is already in contacts`)
-    //       : state(...state, action.payload);
-    //   },
-    //   prepare(state) {
-    //     return {
-    //       payload: {
-    //         ...state,
-    //         id: nanoid(),
-    //       },
-    //     };
-    //   },
-    // },
+    addContact: {
+      reducer(state, action) {
+        return state.filter(
+          contact =>
+            contact.name === action.payload.name &&
+            contact.number === action.payload.number
+        ).length
+          ? alert(`${action.payload.name} is already in contacts`)
+          : [action.payload, ...state];
+      },
+      // reducer(state, action) {
+      //   state.unshift(action.payload);
+
+      // },
+      prepare({ name, number }) {
+        return {
+          payload: {
+            id: nanoid(),
+            name,
+            number,
+          },
+        };
+      },
+    },
     deleteContact(state, action) {
       return state.filter(item => item.id !== action.payload);
     },
@@ -35,4 +44,4 @@ export const contactsSlice = createSlice({
 export const { addContact, deleteContact } = contactsSlice.actions;
 
 // Selectors
-export const getContacts = state => console.log(state.contacts);
+export const getContacts = state => state.contacts;

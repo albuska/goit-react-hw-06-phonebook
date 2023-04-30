@@ -1,22 +1,13 @@
-// import PropTypes from 'prop-types';
 import { Input } from './Filter.styled';
+import { onChangeFilterContacts } from '../../redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
-// import { onChangeFilterContacts } from '../../redux/filterSlice';
 import { getFilters } from '../../redux/filterSlice';
 
-// const Filter = ({ filter, onChange }) => {
   
-const Filter = () => {
-  // const normalizedFilter = filter.toLowerCase();
-  //   const dispatch = useDispatch();
-  // console.log(dispatch(onChangeFilterContacts()));
- let filter = useSelector(getFilters);
-  console.log(filter);
-
-    const handleFilterInput = event => {
-    filter = event.currentTarget.value;
-  };
-
+const Filter = () => { 
+  let filter = useSelector(getFilters);
+  const dispatch = useDispatch();
+  
   return (
     <>
       <label>
@@ -26,8 +17,7 @@ const Filter = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           name="filter"
           value={filter}
-          // onChange={() => dispatch(onChangeFilterContacts(e => e.currentTarget.value))}
-      onChange={handleFilterInput}
+          onChange={(e) => dispatch(onChangeFilterContacts(e.target.value))}
         />
       </label>
     </>
@@ -36,7 +26,3 @@ const Filter = () => {
 
 export default Filter;
 
-// Filter.propTypes = {
-//   filter: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };
