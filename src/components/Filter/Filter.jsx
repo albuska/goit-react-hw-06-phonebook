@@ -17,7 +17,7 @@ const Filter = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           name="filter"
           value={filter}
-          onChange={(e) => dispatch(onChangeFilterContacts(e.target.value.toLowerCase()))}
+          onChange={(e) => dispatch(onChangeFilterContacts(e.target.value))}
         />
       </label>
     </>

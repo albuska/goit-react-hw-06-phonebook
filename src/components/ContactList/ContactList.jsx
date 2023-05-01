@@ -8,12 +8,12 @@ import { getContacts } from 'redux/contactsSlice';
 
 const ContactList = () => {
   const filter = useSelector(getFilters);
-     let contacts = useSelector(getContacts);
-
+  const contacts = useSelector(getContacts);
+  const normalizedFilter = filter.toLowerCase(); 
   const dispatch = useDispatch(); 
 
-    const filterContacts = contacts.filter(contact =>
- contact.name.toLowerCase().includes(filter)
+  const filterContacts = contacts.filter(contact =>
+ contact.name.toLowerCase().includes(normalizedFilter)
   );
 
   return (
