@@ -15,8 +15,7 @@ export const contactsSlice = createSlice({
       reducer(state, action) {
         return state.filter(
           contact =>
-            contact.name === action.payload.name &&
-            contact.number === action.payload.number
+            contact.name === action.payload.name
         ).length
           ? alert(`${action.payload.name} is already in contacts`)
           : [action.payload, ...state];
